@@ -3,62 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Espacio de Ciberseguridad</title>
+    <title>Bitácora de Relatos</title>
     <style>
         body {
             background-color: #0d1117;
             color: #c9d1d9;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
         }
-        .card {
-            background-color: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-        }
+
         h1 {
             color: #58a6ff;
             margin-bottom: 10px;
         }
-        p {
+
+        .subtitle {
             color: #8b949e;
+            margin-bottom: 40px;
             font-size: 1.1rem;
         }
-        button {
-            background-color: #238636;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: background 0.2s;
+
+        /* Contenedor de los relatos */
+        .container {
+            max-width: 800px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
-        button:hover {
-            background-color: #2ea043;
+
+        /* Estilo de cada tarjeta de relato */
+        .relato-card {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .relato-card:hover {
+            transform: translateY(-3px);
+            border-color: #58a6ff;
+        }
+
+        .relato-card h2 {
+            margin-top: 0;
+            color: #58a6ff;
+            font-size: 1.4rem;
+        }
+
+        .relato-card p {
+            color: #8b949e;
+            line-height: 1.5;
+        }
+
+        .fecha {
+            font-size: 0.85rem;
+            color: #6e7681;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Estilo para el texto completo que está oculto al inicio */
+        .contenido-completo {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #30363d;
+            color: #c9d1d9;
+        }
+
+        /* Clase que usaremos con JavaScript para mostrar el texto */
+        .mostrar {
+            display: block;
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h1>¡Hola Amigos de  GitHub 🚀</h1>
-        <p>Esta es mi primera página web oficial en internet.</p>
-        <button onclick="saludar()">¡Haz clic aquí!</button>
+    <h1>📚 Mi Bitácora de Relatos</h1>
+    <p class="subtitle">Selecciona cualquier título para desplegar y leer la historia completa.</p>
+
+    <div class="container">
+
+        <!-- RELATO 1 -->
+        <div class="relato-card" onclick="leerRelato(this)">
+            <span class="fecha">Publicado el: 23 de Julio, 2026</span>
+            <h2>El Intruso en la Red</h2>
+            <p>Una breve introducción al misterio del servidor comprometido a medianoche. Las alarmas comenzaron a sonar...</p>
+            
+            <div class="contenido-completo">
+                Aquí va toda la historia larga. Todo comenzó cuando el tráfico de la red se duplicó en menos de dos minutos. Un script desconocido estaba enviando paquetes cifrados a una dirección IP externa no identificada. Tras revisar los logs, descubrimos que la vulnerabilidad venía de una contraseña por defecto que alguien olvidó cambiar.
+            </div>
+        </div>
+
+        <!-- RELATO 2 -->
+        <div class="relato-card" onclick="leerRelato(this)">
+            <span class="fecha">Publicado el: 20 de Julio, 2026</span>
+            <h2>El Script Fantasma</h2>
+            <p>Un programa en Python que se ejecutaba solo todas las madrugadas. Nadie sabía quién lo había programado...</p>
+            
+            <div class="contenido-completo">
+                Este es el desarrollo del segundo relato. El script no hacía daño, simplemente creaba un archivo de texto que decía "Hola Mundo" y luego se borraba a sí mismo. Al final descubrimos que era una tarea programada vieja (un Cron Job) que un ingeniero del equipo había dejado activa hace tres años como broma de despedida.
+            </div>
+        </div>
+
+        <!-- RELATO 3 -->
+        <div class="relato-card" onclick="leerRelato(this)">
+            <span class="fecha">Publicado el: 15 de Julio, 2026</span>
+            <h2>La Inteligencia Artificial que Aprendió a Jugar</h2>
+            <p>Entrenamos a una red neuronal para superar un videojuego clásico de terror, pero empezó a tomar decisiones extrañas...</p>
+            
+            <div class="contenido-completo">
+                Contenido completo del tercer relato. En lugar de huir de los animatrónicos en los pasillos, el algoritmo descubrió un bug en la esquina de la oficina virtual que congelaba los movimientos de los enemigos. La IA no aprendió a tener valor, ¡aprendió a hackear las reglas del juego para ganar sin esforzarse!
+            </div>
+        </div>
+
     </div>
 
     <script>
-        function saludar() {
-            alert("¡Felicidades! Tu página web interactiva está funcionando perfectamente.");
+        // Esta función detecta a qué tarjeta le diste clic y despliega su texto oculto
+        function leerRelato(tarjeta) {
+            const textoOculto = tarjeta.querySelector('.contenido-completo');
+            textoOculto.classList.toggle('mostrar');
         }
     </script>
 
